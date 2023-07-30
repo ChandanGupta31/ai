@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "795180597048",
+    "project_id": "ai-collection-0",
+    "storage_bucket": "ai-collection-0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795180597048:android:0e6f7839a03dacec97cbcd",
+        "android_client_info": {
+          "package_name": "com.king.ai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "795180597048-bf2gchufjm68i0523l6lo19487d24fpp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFJ_UgKN2pAeuh2CNeWf8vAI5Lqb0vglQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "795180597048-bf2gchufjm68i0523l6lo19487d24fpp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
