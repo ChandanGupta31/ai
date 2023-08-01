@@ -13,7 +13,7 @@ Widget homeItem(BuildContext context, String path, String name) {
       borderRadius: BorderRadius.circular(15),
       boxShadow: [
         BoxShadow(
-          color: Colors.green.shade700,
+          color: Colors.grey.shade700,
           spreadRadius: -0.5,
           blurRadius: 5,
           offset: Offset(3, 3),
@@ -24,14 +24,21 @@ Widget homeItem(BuildContext context, String path, String name) {
       onTap: selectOption,
       child: Column(
         children: [
+          SizedBox(
+            height: 7,
+          ),
           ClipRRect(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(15),
               topRight: Radius.circular(15),
             ),
-            child: Image.asset(
-              path,
-              fit: BoxFit.cover,
+            child: Container(
+              height: 115,
+              width: 115,
+              child: Image.asset(
+                path,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           SizedBox(
@@ -40,9 +47,10 @@ Widget homeItem(BuildContext context, String path, String name) {
           Text(
             name,
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.w700,
             ),
+            textAlign: TextAlign.center,
           )
         ],
       ),

@@ -2,8 +2,8 @@ import 'package:ai/screens/home.dart';
 import 'package:ai/screens/login.dart';
 import 'package:flutter/material.dart';
 
-class signupScreen extends StatelessWidget {
-  const signupScreen({super.key});
+class SignUp extends StatelessWidget {
+  SignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +97,7 @@ class signupScreen extends StatelessWidget {
                 SizedBox(height: MediaQuery.of(context).size.height*0.01,),
                 ElevatedButton(
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>loginScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
                   },
                   child: Text('Have Account'),
                   style: ElevatedButton.styleFrom(

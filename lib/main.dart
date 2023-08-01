@@ -9,10 +9,13 @@ void main() {
   runApp(MaterialApp(
 
     debugShowCheckedModeBanner: false,
-    initialRoute: 'signup',
+    initialRoute: 'home',
 
     routes: {
-      'signup' : (context) => signupScreen(),
+      'signup' : (context) => SignUp(),
+      'login' : (context) => Login(),
+      'home' : (context) => Home(),
+
     },
 
     theme: ThemeData(
