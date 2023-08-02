@@ -33,8 +33,8 @@ void main() {
       'splash' : (context) => Splash(),
       'login' : (context) => Login(),
       'signup' : (context) => SignUp(),
-      'home' : (context) => Home(),
-      'image_to_text' : (context) => ImageToText(),
+      'home' : (context) => Home(),                                 // Completed
+      'image_to_text' : (context) => ImageToText(),                 // Completed
       'random_image' : (context) => RandomImage(),
       'password_generator' : (context) => PasswordGenerator(),
       'qr_generator' : (context) => QRGenerator(),
