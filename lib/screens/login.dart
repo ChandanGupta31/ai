@@ -1,12 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'home.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
 
-  var email = TextEditingController();
+  var emailID = TextEditingController();
   var password = TextEditingController();
 
   @override
@@ -16,8 +18,32 @@ class Login extends StatelessWidget {
       Navigator.pushNamed(context, 'signup');
     }
 
-    void login(){
-
+    void login() async {
+      if(emailID.text.isNotEmpty && password.text.isNotEmpty){
+        var email = emailID.text.toString();
+        var pass = password.text.toString();
+        EasyLoading.show(
+          status: 'Signing ...',
+        );
+        await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: pass).then((value) => {
+          EasyLoading.dismiss(),
+          Navigator.pushNamed(context, 'home')
+        }).onError((error, stackTrace) => {
+          EasyLoading.dismiss(),
+          EasyLoading.showToast(
+            error.toString(),
+            duration: Duration(seconds: 2),
+            toastPosition: EasyLoadingToastPosition.center,
+          )
+        });
+      }
+      else{
+        EasyLoading.showToast(
+          'Provide The Correct Credential',
+          duration: Duration(seconds: 2),
+          toastPosition: EasyLoadingToastPosition.center,
+        );
+      }
     }
 
     return Scaffold(
@@ -36,8 +62,8 @@ class Login extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(15),
                 child: TextField(
-                  controller: email,
-                  keyboardType: TextInputType.visiblePassword,
+                  controller: emailID,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     label: Text('E-Mail ID'),
                     focusedBorder: OutlineInputBorder(
@@ -65,6 +91,7 @@ class Login extends StatelessWidget {
                 padding: EdgeInsets.all(15),
                 child: TextField(
                   controller: password,
+                  obscureText: true,
                   keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
                     label: Text('Password'),

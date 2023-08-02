@@ -17,8 +17,10 @@ import 'package:ai/screens/sign_up.dart';
 import 'package:ai/screens/text_similarity.dart';
 import 'package:ai/screens/thesaurus.dart';
 import 'package:ai/screens/validate_phone.dart';
+import 'package:ai/services/easyloading.dart';
 import 'package:ai/services/firebase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() {
 
@@ -28,8 +30,8 @@ void main() {
     initialRoute: 'login',
 
     routes: {
-      'signup' : (context) => SignUp(),
       'login' : (context) => Login(),
+      'signup' : (context) => SignUp(),
       'home' : (context) => Home(),
       'image_to_text' : (context) => ImageToText(),
       'random_image' : (context) => RandomImage(),
@@ -53,8 +55,11 @@ void main() {
       fontFamily: 'Poppins',
       primaryColor: Color(0xFFD0BCFF),
     ),
+
+    builder: EasyLoading.init(),
   ));
 
   FirebaseService.initialize();
+  EasyLoadingServices.initialize();
 }
 

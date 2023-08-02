@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});
@@ -7,12 +9,37 @@ class SignUp extends StatelessWidget {
   var password = TextEditingController();
   var confirmPass = TextEditingController();
 
-  void signUp(){
-
-  }
-
   @override
   Widget build(BuildContext context) {
+
+    void signUp() async {
+      if(emailID.text.isNotEmpty && password.text.isNotEmpty && password.text.toString() == confirmPass.text.toString()){
+        var email = emailID.text.toString();
+        var pass = password.text.toString();
+        EasyLoading.show(
+          status: 'SigningUp ...',
+        );
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: pass).then((value) => {
+          EasyLoading.dismiss(),
+          Navigator.pushNamed(context, 'home')
+        }).onError((error, stackTrace) => {
+          EasyLoading.dismiss(),
+          EasyLoading.showToast(
+            error.toString(),
+            duration: Duration(seconds: 2),
+            toastPosition: EasyLoadingToastPosition.center,
+          )
+        });
+      }
+      else{
+        EasyLoading.showToast(
+          'Provide The Correct Credential',
+          duration: Duration(seconds: 2),
+          toastPosition: EasyLoadingToastPosition.center,
+        );
+      }
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -59,6 +86,7 @@ class SignUp extends StatelessWidget {
                   padding: EdgeInsets.all(15),
                   child: TextField(
                     controller: password,
+                    obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
                     cursorColor: Theme.of(context).primaryColor,
                     decoration: InputDecoration(
