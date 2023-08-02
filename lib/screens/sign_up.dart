@@ -1,115 +1,141 @@
-import 'package:ai/screens/home.dart';
-import 'package:ai/screens/login.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});
 
+  var emailID = TextEditingController();
+  var password = TextEditingController();
+  var confirmPass = TextEditingController();
+
+  void signUp(){
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    var emailID = TextEditingController();
-    var password = TextEditingController();
-    var conf_pass = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Stack(
           children: [
-            Image.asset('assets/images/background.jpg',height: MediaQuery.of(context).size.height,width: MediaQuery.of(context).size.width,fit: BoxFit.fill),
+            Image.asset('assets/images/background.jpg',
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.fill),
             Column(
               children: [
-                SizedBox(height: MediaQuery.sizeOf(context).height*0.1,),
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height * 0.1,
+                ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(15),
                   child: TextField(
                     controller: emailID,
                     keyboardType: TextInputType.emailAddress,
-                    cursorColor: Colors.cyanAccent,
+                    cursorColor: Theme.of(context).primaryColor,
                     decoration: InputDecoration(
-                        label:Text('Email ID*'),
+                        label: Text('Email ID'),
                         focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.cyanAccent)
-                        ),
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Theme.of(context).primaryColor,
+                              width: 1,
+                            )),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1,
+                            )),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        )
-                    ),
+                          borderRadius: BorderRadius.circular(15),
+                        )),
                     style: TextStyle(
                       fontSize: 14,
                     ),
                   ),
-
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child:  TextField(
-                    controller:password ,
-                    keyboardType: TextInputType.visiblePassword,
-                    cursorColor: Colors.cyanAccent,
-                    decoration: InputDecoration(
-                        label:Text('Password'),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.cyanAccent)
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        )
-                    ),
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
-
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(15),
                   child: TextField(
-                    controller: conf_pass,
+                    controller: password,
                     keyboardType: TextInputType.visiblePassword,
-                    cursorColor: Colors.cyanAccent,
+                    cursorColor: Theme.of(context).primaryColor,
                     decoration: InputDecoration(
-                      label:Text('Confirm Password'),
+                        label: Text('Password'),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Theme.of(context).primaryColor,
+                              width: 1,
+                            )),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1,
+                            )),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        )),
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(15),
+                  child: TextField(
+                    controller: confirmPass,
+                    keyboardType: TextInputType.visiblePassword,
+                    cursorColor: Theme.of(context).primaryColor,
+                    decoration: InputDecoration(
+                      label: Text('Confirm Password'),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.cyanAccent)
-                      ),
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor,
+                            width: 1,
+                          )),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(
+                            color: Colors.grey,
+                            width: 1,
+                          )),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderRadius: BorderRadius.circular(15),
                       ),
                     ),
                     style: TextStyle(
                       fontSize: 14,
                     ),
                   ),
-
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-                ElevatedButton(
-                  onPressed: (){
-                    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Home()) );
-                  },
-                  child: Text('SignUp'),
-                  style: ElevatedButton.styleFrom(
-                      elevation: 10,
-                      backgroundColor: Colors.cyanAccent,
-                      shadowColor: Colors.blueGrey
-                  ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.04,
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                ElevatedButton(
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
-                  },
-                  child: Text('Have Account'),
-                  style: ElevatedButton.styleFrom(
-                      elevation: 10,
-                      backgroundColor: Colors.cyanAccent,
-                      shadowColor: Colors.blueGrey
+                Container(
+                  width: MediaQuery.of(context).size.width*0.92,
+                  height: MediaQuery.of(context).size.height*0.065,
+                  child: ElevatedButton(
+                    onPressed: signUp,
+                    child: Text(
+                      'SignUp',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                        shadowColor: Colors.grey
+                    ),
                   ),
                 ),
               ],
             ),
           ],
-
         ),
       ),
     );

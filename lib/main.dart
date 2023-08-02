@@ -25,7 +25,7 @@ void main() {
   runApp(MaterialApp(
 
     debugShowCheckedModeBanner: false,
-    initialRoute: 'home',
+    initialRoute: 'login',
 
     routes: {
       'signup' : (context) => SignUp(),

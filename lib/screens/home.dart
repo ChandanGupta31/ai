@@ -11,10 +11,10 @@ class Home extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: GridView.extent(
-          maxCrossAxisExtent: 300,
+          maxCrossAxisExtent: 250,
           crossAxisSpacing: 20,
           mainAxisSpacing: 20,
-          childAspectRatio: 0.92,
+          childAspectRatio: MediaQuery.of(context).size.width<420 ? 0.92 : 1,
           padding: EdgeInsets.all(MediaQuery.of(context).size.width*0.04),
           children: [
             homeItem(context, 'assets/images/image_to_text.png', 'Image to Text'),
