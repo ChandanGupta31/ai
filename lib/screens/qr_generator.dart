@@ -1,7 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart';
 
-class QRGenerator extends StatelessWidget {
+class QRGenerator extends StatefulWidget {
   QRGenerator({super.key});
+
+  @override
+  State<QRGenerator> createState() => _QRGeneratorState();
+}
+
+class _QRGeneratorState extends State<QRGenerator> {
+
+  Future<void> getQR() async {
+    var headers = {
+      'X-Api-Key': 'C0sJdYc5Tc5PYYxHJpNslw==2Is9I4yHKmNFDKKR'
+    };
+    var request = http.Request('GET', Uri.parse('https://api.api-ninjas.com/v1/qrcode?format=png&data=https://api-ninjas.com'));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    }
+    else {
+    print(response.reasonPhrase);
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +87,7 @@ class QRGenerator extends StatelessWidget {
               Container(
                 width: MediaQuery.of(context).size.width*0.6,
                 child: ElevatedButton(
-                  onPressed: (){
-                  },
+                  onPressed: getQR,
                   child: Text(
                     buttonName,
                     style: TextStyle(

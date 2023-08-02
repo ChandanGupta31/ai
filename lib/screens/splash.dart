@@ -44,7 +44,44 @@ class _SplashState extends State<Splash> {
         ),
         child: Column(
           children: [
-
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.27,
+            ),
+            Center(
+              child: Container(
+                height: MediaQuery.of(context).size.height*0.2,
+                width: MediaQuery.of(context).size.height*0.2,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.05),
+                  child: Image.asset(
+                    'assets/images/icon.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.02,
+            ),
+            Text(
+              'AI Fusion',
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontSize: 30,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            Spacer(),
+            Text(
+              'Version 1.0',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*0.015,
+            ),
           ],
         ),
       ),

@@ -166,6 +166,9 @@ class _ImageToTextState extends State<ImageToText> {
                   ),
                 )
               ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height*0.025,
+              ),
               Visibility(
                 visible: textVisibility,
                 child: Container(

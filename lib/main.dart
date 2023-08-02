@@ -30,13 +30,13 @@ void main() {
     initialRoute: 'splash',
 
     routes: {
-      'splash' : (context) => Splash(),
-      'login' : (context) => Login(),
-      'signup' : (context) => SignUp(),
+      'splash' : (context) => Splash(),                             // Completed
+      'login' : (context) => Login(),                               // Completed
+      'signup' : (context) => SignUp(),                             // Completed
       'home' : (context) => Home(),                                 // Completed
       'image_to_text' : (context) => ImageToText(),                 // Completed
       'random_image' : (context) => RandomImage(),
-      'password_generator' : (context) => PasswordGenerator(),
+      'password_generator' : (context) => PasswordGenerator(),      // Completed
       'qr_generator' : (context) => QRGenerator(),
       'dictionary' : (context) => Dictionary(),
       'thesaurus' : (context) => Thesaurus(),
@@ -49,7 +49,7 @@ void main() {
       'animal' : (context) => Animal(),
       'celebrity' : (context) => Celebrity(),
       'text_similarity' : (context) => TextSimilarity(),
-      'validate_phone' : (context) => ValidatePhone(),
+      'validate_phone' : (context) => ValidatePhone(),              // Completed
     },
 
     theme: ThemeData(

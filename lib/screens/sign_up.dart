@@ -58,8 +58,28 @@ class SignUp extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.sizeOf(context).height * 0.1,
                 ),
+                Center(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height*0.2,
+                    width: MediaQuery.of(context).size.height*0.2,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.05),
+                      child: Image.asset(
+                        'assets/images/icon.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height*0.08,
+                ),
                 Padding(
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height*0.02,
+                    right: MediaQuery.of(context).size.height*0.02,
+                    bottom: MediaQuery.of(context).size.height*0.02,
+                  ),
                   child: TextField(
                     controller: emailID,
                     keyboardType: TextInputType.emailAddress,
@@ -87,7 +107,11 @@ class SignUp extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height*0.02,
+                    right: MediaQuery.of(context).size.height*0.02,
+                    bottom: MediaQuery.of(context).size.height*0.02,
+                  ),
                   child: TextField(
                     controller: password,
                     obscureText: true,
@@ -116,7 +140,11 @@ class SignUp extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height*0.02,
+                    right: MediaQuery.of(context).size.height*0.02,
+                    bottom: MediaQuery.of(context).size.height*0.02,
+                  ),
                   child: TextField(
                     controller: confirmPass,
                     keyboardType: TextInputType.visiblePassword,
