@@ -4,7 +4,55 @@ import 'package:flutter/material.dart';
 Widget homeItem(BuildContext context, String path, String name) {
 
   void selectOption(){
-
+      switch(name){
+        case 'Image to Text' :
+          Navigator.pushNamed(context, 'image_to_text');
+          break;
+        case 'Random Image' :
+          Navigator.pushNamed(context, 'random_image');
+          break;
+        case 'Password Generator' :
+          Navigator.pushNamed(context, 'password_generator');
+          break;
+        case 'QR Generator' :
+          Navigator.pushNamed(context, 'qr_generator');
+          break;
+        case 'Dictionary' :
+          Navigator.pushNamed(context, 'dictionary');
+          break;
+        case 'Thesaurus' :
+          Navigator.pushNamed(context, 'thesaurus');
+          break;
+        case 'Quotes' :
+          Navigator.pushNamed(context, 'quotes');
+          break;
+        case 'Jokes' :
+          Navigator.pushNamed(context, 'jokes');
+          break;
+        case 'Exercises' :
+          Navigator.pushNamed(context, 'exercise');
+          break;
+        case 'Recipes' :
+          Navigator.pushNamed(context, 'recipe');
+          break;
+        case 'Currency Converter' :
+          Navigator.pushNamed(context, 'currency_convertor');
+          break;
+        case 'About Country' :
+          Navigator.pushNamed(context, 'about_country');
+          break;
+        case 'Animals' :
+          Navigator.pushNamed(context, 'animal');
+          break;
+        case 'Celebrity' :
+          Navigator.pushNamed(context, 'celebrity');
+          break;
+        case 'Text Similarity' :
+          Navigator.pushNamed(context, 'text_similarity');
+          break;
+        default :
+          Navigator.pushNamed(context, 'validate_phone');
+      }
   }
 
   return Container(

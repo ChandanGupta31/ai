@@ -1,3 +1,4 @@
+import 'package:ai/services/shared_preference.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,10 @@ class Login extends StatelessWidget {
         );
         await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: pass).then((value) => {
           EasyLoading.dismiss(),
-          Navigator.pushNamed(context, 'home')
+          Navigator.popUntil(context, (route) => route.isFirst),
+          AppManager.saveLoggedInStatus(true),
+          Navigator.pushReplacementNamed(context, 'home'),
+
         }).onError((error, stackTrace) => {
           EasyLoading.dismiss(),
           EasyLoading.showToast(

@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import '../services/shared_preference.dart';
+
 class SignUp extends StatelessWidget {
   SignUp({super.key});
 
@@ -21,7 +23,9 @@ class SignUp extends StatelessWidget {
         );
         await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: pass).then((value) => {
           EasyLoading.dismiss(),
-          Navigator.pushNamed(context, 'home')
+          Navigator.popUntil(context, (route) => route.isFirst),
+          AppManager.saveLoggedInStatus(true),
+          Navigator.pushReplacementNamed(context, 'home')
         }).onError((error, stackTrace) => {
           EasyLoading.dismiss(),
           EasyLoading.showToast(

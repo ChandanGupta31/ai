@@ -14,6 +14,7 @@ import 'package:ai/screens/quotes.dart';
 import 'package:ai/screens/random_image.dart';
 import 'package:ai/screens/recipe.dart';
 import 'package:ai/screens/sign_up.dart';
+import 'package:ai/screens/splash.dart';
 import 'package:ai/screens/text_similarity.dart';
 import 'package:ai/screens/thesaurus.dart';
 import 'package:ai/screens/validate_phone.dart';
@@ -23,13 +24,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() {
-
   runApp(MaterialApp(
 
     debugShowCheckedModeBanner: false,
-    initialRoute: 'login',
+    initialRoute: 'splash',
 
     routes: {
+      'splash' : (context) => Splash(),
       'login' : (context) => Login(),
       'signup' : (context) => SignUp(),
       'home' : (context) => Home(),
@@ -62,4 +63,3 @@ void main() {
   FirebaseService.initialize();
   EasyLoadingServices.initialize();
 }
-
