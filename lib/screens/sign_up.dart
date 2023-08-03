@@ -62,12 +62,9 @@ class SignUp extends StatelessWidget {
                   child: Container(
                     height: MediaQuery.of(context).size.height*0.2,
                     width: MediaQuery.of(context).size.height*0.2,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height*0.05),
-                      child: Image.asset(
-                        'assets/images/icon.jpg',
-                        fit: BoxFit.cover,
-                      ),
+                    child: Image.asset(
+                      'assets/images/icon.png',
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
