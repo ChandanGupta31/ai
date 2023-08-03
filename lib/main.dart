@@ -20,14 +20,19 @@ import 'package:ai/screens/thesaurus.dart';
 import 'package:ai/screens/validate_phone.dart';
 import 'package:ai/services/easyloading.dart';
 import 'package:ai/services/firebase.dart';
+import 'package:ai/services/shared_preference.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-void main() {
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  bool isLoggedIn = await AppManager.isLoggedIn();
+
   runApp(MaterialApp(
 
     debugShowCheckedModeBanner: false,
-    initialRoute: 'splash',
+    initialRoute: isLoggedIn ? 'home' : 'login',
 
     routes: {
       'splash' : (context) => Splash(),                             // Completed
@@ -48,7 +53,7 @@ void main() {
       'about_country' : (context) => AboutCountry(),
       'animal' : (context) => Animal(),
       'celebrity' : (context) => Celebrity(),
-      'text_similarity' : (context) => TextSimilarity(),
+      'text_similarity' : (context) => TextSimilarity(),            // Completed
       'validate_phone' : (context) => ValidatePhone(),              // Completed
     },
 

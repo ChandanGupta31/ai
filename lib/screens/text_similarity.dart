@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:http/http.dart' as http;
 
 class TextSimilarity extends StatefulWidget {
   TextSimilarity({super.key});
@@ -8,13 +12,50 @@ class TextSimilarity extends StatefulWidget {
 }
 
 class _TextSimilarityState extends State<TextSimilarity> {
-  @override
-  Widget build(BuildContext context) {
+
   var textFirst = TextEditingController();
   var textSecond = TextEditingController();
-  var buttonName ='Check';
   var textController = TextEditingController();
   var visibility = false;
+
+  void getSimilarity() async {
+    EasyLoading.show(status: 'Checking...');
+    var headers = {
+      'X-Api-Key': 'C0sJdYc5Tc5PYYxHJpNslw==2Is9I4yHKmNFDKKR',
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('POST', Uri.parse('https://api.api-ninjas.com/v1/textsimilarity'));
+    request.body = json.encode({
+      "text_1": textFirst.text.toString(),
+      "text_2": textSecond.text.toString()
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var dataJson = await response.stream.bytesToString();
+      var data = jsonDecode(dataJson);
+      textController.text = 'Similarity : ${(data['similarity']*100).toStringAsFixed(2)}%';
+      visibility = true;
+      EasyLoading.dismiss();
+      print(textController.text.toString());
+      setState(() {
+
+      });
+    }
+    else {
+      EasyLoading.dismiss();
+      EasyLoading.showToast(
+        response.reasonPhrase.toString(),
+        toastPosition: EasyLoadingToastPosition.bottom,
+        duration: Duration(seconds: 1),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
        body: Container(
          padding: EdgeInsets.symmetric(
@@ -94,10 +135,9 @@ class _TextSimilarityState extends State<TextSimilarity> {
                Container(
                  width: MediaQuery.of(context).size.width*0.6,
                  child: ElevatedButton(
-                   onPressed: (){
-                   },
+                   onPressed: getSimilarity,
                    child: Text(
-                     buttonName,
+                     'Check',
                      style: TextStyle(
                        color: Colors.white,
                        fontWeight: FontWeight.w700,
@@ -118,8 +158,12 @@ class _TextSimilarityState extends State<TextSimilarity> {
                    child: TextFormField(
                      controller: textController,
                      minLines: 1,
-                     maxLines: 300,
+                     maxLines: 10,
                      enabled: false,
+                     style: TextStyle(
+                       fontWeight: FontWeight.w700,
+                       fontSize: 16
+                     ),
                      decoration: InputDecoration(
                          disabledBorder: OutlineInputBorder(
                              borderRadius: BorderRadius.circular(15),
@@ -127,7 +171,7 @@ class _TextSimilarityState extends State<TextSimilarity> {
                                color: Theme.of(context).primaryColor,
                                width: 0.5,
                              )
-                         )
+                         ),
                      ),
                    )
                ),
