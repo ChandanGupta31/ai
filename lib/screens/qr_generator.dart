@@ -1,6 +1,11 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class QRGenerator extends StatefulWidget {
   QRGenerator({super.key});
@@ -11,31 +16,66 @@ class QRGenerator extends StatefulWidget {
 
 class _QRGeneratorState extends State<QRGenerator> {
 
-  Future<void> getQR() async {
-    var headers = {
-      'X-Api-Key': 'C0sJdYc5Tc5PYYxHJpNslw==2Is9I4yHKmNFDKKR'
-    };
-    var request = http.Request('GET', Uri.parse('https://api.api-ninjas.com/v1/qrcode?format=png&data=https://api-ninjas.com'));
+  var urlForQr = TextEditingController();
+  var visibility =false;
+  var imageFile = Uint8List(0);
 
-    request.headers.addAll(headers);
+  void getImageFromApi() async {
+    EasyLoading.show(status: 'Generating QR ...');
+    final url = 'https://api.api-ninjas.com/v1/qrcode?format=png&data=${urlForQr.text.toString()}';
+    final headers = {'X-Api-Key': 'C0sJdYc5Tc5PYYxHJpNslw==2Is9I4yHKmNFDKKR'};
 
-    http.StreamedResponse response = await request.send();
+    try {
+      final response = await http.get(Uri.parse(url), headers: headers);
 
-    if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+      if (response.statusCode == 200) {
+        print('done');
+        final decodedBytes = base64Decode(response.body);
+        imageFile = Uint8List.fromList(decodedBytes);
+        visibility = true;
+        EasyLoading.dismiss();
+        setState(() {
+
+        });
+      } else {
+        EasyLoading.dismiss();
+        EasyLoading.showToast(
+          response.reasonPhrase.toString(),
+          toastPosition: EasyLoadingToastPosition.center,
+          duration: Duration(seconds: 1),
+        );
+      }
+    } catch (e) {
+      print('error');
+      throw Exception('Error fetching image: $e');
     }
-    else {
-    print(response.reasonPhrase);
-    }
+  }
 
+  void downloadImage() async {
+    try {
+      final galleryDirectory = await getExternalStorageDirectory();
+      final file = File('${galleryDirectory!.path}/${urlForQr.text.toString()}.png');
+      await file.writeAsBytes(imageFile);
+      await ImageGallerySaver.saveFile(file.path);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Image saved to gallery'),
+          backgroundColor: Colors.green,
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    var urlForQr = TextEditingController();
-    var visibility =false;
-    var textController = TextEditingController();
-    var buttonName = 'Generate QR';
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(
@@ -87,9 +127,9 @@ class _QRGeneratorState extends State<QRGenerator> {
               Container(
                 width: MediaQuery.of(context).size.width*0.6,
                 child: ElevatedButton(
-                  onPressed: getQR,
+                  onPressed: getImageFromApi,
                   child: Text(
-                    buttonName,
+                    'Generate QR',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
@@ -106,22 +146,36 @@ class _QRGeneratorState extends State<QRGenerator> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height*0.025,),
               Visibility(
-                  visible: visibility,
-                  child: TextFormField(
-                    controller: textController,
-                    minLines: 1,
-                    maxLines: 300,
-                    enabled: false,
-                    decoration: InputDecoration(
-                        disabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
-                              color: Theme.of(context).primaryColor,
-                              width: 0.5,
-                            )
+                visible: visibility,
+                child: Image.memory(
+                  imageFile,
+                  height: MediaQuery.of(context).size.height*0.25,
+                  width: MediaQuery.of(context).size.height*0.25,
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+              Visibility(
+                visible: visibility,
+                child: Container(
+                  width: MediaQuery.of(context).size.width*0.6,
+                  child: ElevatedButton(
+                    onPressed: downloadImage,
+                    child: Text(
+                      'Save QR',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         )
                     ),
-                  )
+                  ),
+                ),
               ),
             ],
           ),

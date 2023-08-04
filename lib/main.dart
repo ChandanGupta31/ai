@@ -42,7 +42,7 @@ Future<void> main() async {
       'image_to_text' : (context) => ImageToText(),                 // Completed
       'random_image' : (context) => RandomImage(),
       'password_generator' : (context) => PasswordGenerator(),      // Completed
-      'qr_generator' : (context) => QRGenerator(),
+      'qr_generator' : (context) => QRGenerator(),                  // Completed
       'dictionary' : (context) => Dictionary(),
       'thesaurus' : (context) => Thesaurus(),
       'quotes' : (context) => Quotes(),
