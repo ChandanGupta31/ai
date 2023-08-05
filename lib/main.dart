@@ -50,7 +50,7 @@ Future<void> main() async {
       'exercise' : (context) => Exercise(),
       'recipe' : (context) => Recipe(),
       'currency_convertor' : (context) => CurrencyConvertor(),      // Completed
-      'about_country' : (context) => AboutCountry(),
+      'about_country' : (context) => AboutCountry(),                // Completed
       'animal' : (context) => Animal(),
       'celebrity' : (context) => Celebrity(),                       // Completed
       'text_similarity' : (context) => TextSimilarity(),            // Completed
