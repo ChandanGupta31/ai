@@ -45,7 +45,7 @@ Future<void> main() async {
       'qr_generator' : (context) => QRGenerator(),                  // Completed
       'dictionary' : (context) => Dictionary(),
       'thesaurus' : (context) => Thesaurus(),
-      'quotes' : (context) => Quotes(),
+      'quotes' : (context) => Quotes(),                             // Completed
       'jokes' : (context) => Jokes(),
       'exercise' : (context) => Exercise(),
       'recipe' : (context) => Recipe(),
