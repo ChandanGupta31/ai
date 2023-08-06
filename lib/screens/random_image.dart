@@ -155,8 +155,8 @@ class _RandomImageState extends State<RandomImage> {
                 visible: visibility,
                 child: Image.memory(
                   base64Decode(imageFile),
-                  height: MediaQuery.of(context).size.height*0.25,
-                  width: MediaQuery.of(context).size.height*0.3,
+                  height: MediaQuery.of(context).size.height*0.3,
+                  width: MediaQuery.of(context).size.height*0.4,
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height*0.02,),
