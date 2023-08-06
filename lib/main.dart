@@ -40,7 +40,7 @@ Future<void> main() async {
       'signup' : (context) => SignUp(),                             // Completed
       'home' : (context) => Home(),                                 // Completed
       'image_to_text' : (context) => ImageToText(),                 // Completed
-      'random_image' : (context) => RandomImage(),
+      'random_image' : (context) => RandomImage(),                  // Completed
       'password_generator' : (context) => PasswordGenerator(),      // Completed
       'qr_generator' : (context) => QRGenerator(),                  // Completed
       'dictionary' : (context) => Dictionary(),
