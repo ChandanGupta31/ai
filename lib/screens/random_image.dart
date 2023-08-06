@@ -167,7 +167,7 @@ class _RandomImageState extends State<RandomImage> {
                   child: ElevatedButton(
                     onPressed: downloadImage,
                     child: Text(
-                      'Save QR',
+                      'Download Image',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
