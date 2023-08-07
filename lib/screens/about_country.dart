@@ -14,7 +14,7 @@ class AboutCountry extends StatefulWidget {
 
 class _AboutCountryState extends State<AboutCountry> {
   var countryName = TextEditingController();
-  var visibility = true;
+  var visibility = false;
   var data;
 
   var gdp = '';

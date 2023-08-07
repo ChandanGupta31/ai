@@ -65,8 +65,8 @@ class Login extends StatelessWidget {
               ),
               Center(
                 child: Container(
-                  height: MediaQuery.of(context).size.height*0.2,
-                  width: MediaQuery.of(context).size.height*0.2,
+                  height: MediaQuery.of(context).size.height*0.17,
+                  width: MediaQuery.of(context).size.height*0.17,
                   child: Image.asset(
                     'assets/images/icon.png',
                     fit: BoxFit.cover,
