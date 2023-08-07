@@ -32,7 +32,7 @@ Future<void> main() async {
   runApp(MaterialApp(
 
     debugShowCheckedModeBanner: false,
-    initialRoute: isLoggedIn ? 'animal' : 'login',
+    initialRoute: isLoggedIn ? 'home' : 'login',
 
     routes: {
       'splash' : (context) => Splash(),                             // Completed
