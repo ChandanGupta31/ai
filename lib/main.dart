@@ -32,7 +32,7 @@ Future<void> main() async {
   runApp(MaterialApp(
 
     debugShowCheckedModeBanner: false,
-    initialRoute: isLoggedIn ? 'home' : 'login',
+    initialRoute: isLoggedIn ? 'animal' : 'login',
 
     routes: {
       'splash' : (context) => Splash(),                             // Completed
@@ -46,12 +46,12 @@ Future<void> main() async {
       'dictionary' : (context) => Dictionary(),                     // Completed
       'thesaurus' : (context) => Thesaurus(),                       // Completed
       'quotes' : (context) => Quotes(),                             // Completed
-      'jokes' : (context) => Jokes(),
-      'exercise' : (context) => Exercise(),
-      'recipe' : (context) => Recipe(),
+      'jokes' : (context) => Jokes(),                               // Completed
+      'exercise' : (context) => Exercise(),                         // Completed
+      'recipe' : (context) => Recipe(),                             // Completed
       'currency_convertor' : (context) => CurrencyConvertor(),      // Completed
       'about_country' : (context) => AboutCountry(),                // Completed
-      'animal' : (context) => Animal(),
+      'animal' : (context) => Animal(),                             // Completed
       'celebrity' : (context) => Celebrity(),                       // Completed
       'text_similarity' : (context) => TextSimilarity(),            // Completed
       'validate_phone' : (context) => ValidatePhone(),              // Completed
