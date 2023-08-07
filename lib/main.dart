@@ -43,7 +43,7 @@ Future<void> main() async {
       'random_image' : (context) => RandomImage(),                  // Completed
       'password_generator' : (context) => PasswordGenerator(),      // Completed
       'qr_generator' : (context) => QRGenerator(),                  // Completed
-      'dictionary' : (context) => Dictionary(),
+      'dictionary' : (context) => Dictionary(),                     // Completed
       'thesaurus' : (context) => Thesaurus(),
       'quotes' : (context) => Quotes(),                             // Completed
       'jokes' : (context) => Jokes(),
